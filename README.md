@@ -1,4 +1,4 @@
-![size badge](https://img.shields.io/github/repo-size/Jobenland/CSV-Graph-Generator.svg) ![license](https://img.shields.io/github/license/Jobenland/CSV-Graph-Generator.svg)
+![size badge](https://img.shields.io/github/repo-size/Jobenland/CSV-Graph-Generator.svg) ![license](https://img.shields.io/github/license/Jobenland/CSV-Graph-Generator.svg) ![build](https://img.shields.io/badge/Build-Passing-green.svg)
 
 # CSV Data Grapher
 
