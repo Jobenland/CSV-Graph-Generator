@@ -2,7 +2,7 @@
 
 This program generates graphs from a given CSV file and allows the user to generate a User friendly graph
 
-![working](https://Github.com/Jobenland/CSV-Graph-Generator/Working.png)
+![working](Working.png)
 
 ## Getting Started
 
