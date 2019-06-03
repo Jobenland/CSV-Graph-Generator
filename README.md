@@ -1,4 +1,4 @@
-# Solartron Data Extractor
+# CVS Data Grapher
 
 This program generates graphs from a given CSV file and allows the user to generate a User friendly graph
 
