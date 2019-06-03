@@ -9,7 +9,7 @@ __author__ = "Jonathan Obenland"
 __copyright__ = "Copyright 2019, MEII"
 __credits__ = ["Jonathan Obenland", "Mikethewatchguy"]
 __license__ = "GPL"
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 __maintainer__ = "Jonathan Obenland"
 __email__ = "jobenland1@gmail.com"
 __status__ = "Production"
@@ -51,13 +51,13 @@ def Main():
     #sets the preview pane to see the preview portion
     Preview = [ [sg.Menu(menu_def)],
                [sg.Column(columm_layout, size=(300,100), scrollable=True)] ]
-
+    #TODO add new tool that will list all the available columns and the user can go through and select the ones to include
     #sets the layout for the graph settings on the box
     Setting = [[sg.Slider(range=(1,1000), default_value=500, size=(10,10), orientation='horizontal', key = 'height',font=('Helvetica', 12)),
-                    sg.Text('  Name:  ', size=(8,1)), sg.InputText(key='graphtitle', size=(8,1))],
+                    sg.Text('    Name:  ', size=(10,1)), sg.InputText(key='graphtitle', size=(15,1))],
                [sg.Text('Enter graph Height')],
                [sg.Slider(range=(1,1000), default_value=500, size=(10,10), orientation='horizontal', key = 'width', font=('Helvetica', 12)),
-                    sg.Text('       '),sg.InputCombo(['Red', 'Green', 'Blue', 'Yellow', 'Orange'])],
+                    sg.Text('       '),sg.InputCombo(['Red', 'Green', 'Blue', 'Yellow', 'Orange']),sg.Text('   Legend Location  '), sg.InputCombo(['Top Left','Top Right','Bottom Left', 'Bottom Right'], key = 'legendloc')],
                [sg.Text('Enter graph Width')]]
               
     #general layout bringing all the smaller frames together
@@ -126,6 +126,7 @@ def Main():
                         except:
                             pass
         #TODO fix the save function to allow a user to change a field and save it as a csv
+        #FIXME saves in an unreadable corrupt CSV
         elif event == 'Save':
             filename = sg.PopupGetFile('filename to open', save_as = True,no_window=True, file_types=(("CSV Files","*.csv"),))
             for i, row in enumerate(data):
@@ -172,7 +173,23 @@ def Main():
 
 
             #TODO add ability for user to choose location
-            p.legend.location = "top_right"
+            lloc = values['legendloc']
+
+            if lloc == 'Top Right':
+
+                p.legend.location = "top_right"
+
+            elif lloc == 'Top Left':
+
+                p.legend.location = "top_left"
+
+            elif lloc == 'Bottom Right':
+
+                p.legend.location = "bottom_right"
+
+            elif lloc == 'Bottom Left':
+
+                p.legend.location ="bottom_left" 
 
             #show the graph
             show(p)
