@@ -2,7 +2,6 @@
 
 This program generates graphs from a given CSV file and allows the user to generate a User friendly graph
 
-![working](Working.png)
 
 ## Getting Started
 
@@ -66,3 +65,8 @@ No versioning control has been set up yet but I am working on having this work i
 ## License
 
 This project is licensed under the GPL License
+
+## ScreenShots
+
+![working](Working.png)
+
