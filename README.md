@@ -1,4 +1,4 @@
-![size badge](https://img.shields.io/github/repo-size/Jobenland/CSV-Graph-Generator.svg) ![license](https://img.shields.io/github/license/Jobenland/CSV-Graph-Generator.svg) ![build](https://img.shields.io/badge/Build-Passing-green.svg) ![issues](https://img.shields.io/github/issues/Jobenland/CSV-Graph-Generator.svg) ![Version](https://img.shields.io/badge/Version-1.2.0-blue.svg)
+![size badge](https://img.shields.io/github/repo-size/Jobenland/CSV-Graph-Generator.svg) ![license](https://img.shields.io/github/license/Jobenland/CSV-Graph-Generator.svg) ![build](https://img.shields.io/badge/Build-Passing-green.svg) ![issues](https://img.shields.io/github/issues/Jobenland/CSV-Graph-Generator.svg) ![Version](https://img.shields.io/badge/Version-1.2.0-blue.svg) ![python](https://img.shields.io/badge/Python-3.x-lightgrey.svg)
 
 # CSV Data Grapher
 
