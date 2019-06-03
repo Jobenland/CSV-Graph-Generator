@@ -2,6 +2,7 @@
 
 This program generates graphs from a given CSV file and allows the user to generate a User friendly graph
 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -64,3 +65,8 @@ No versioning control has been set up yet but I am working on having this work i
 ## License
 
 This project is licensed under the GPL License
+
+## ScreenShots
+
+![working](Working.png)
+
