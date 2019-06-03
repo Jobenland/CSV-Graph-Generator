@@ -242,6 +242,9 @@ def Main():
                 p.legend.location ="bottom_left" 
             #show the graph
             show(p)
+
+        #if the user wants to reset the program
+        #FIXME this does not work. It opens another window and the program crashes
         elif event == "Reset":
                 Main()
         # if a valid table location entered, change that location's value
