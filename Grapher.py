@@ -9,11 +9,10 @@ __author__ = "Jonathan Obenland"
 __copyright__ = "Copyright 2019, MEII"
 __credits__ = ["Jonathan Obenland", "Mikethewatchguy"]
 __license__ = "GPL"
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 __maintainer__ = "Jonathan Obenland"
 __email__ = "jobenland1@gmail.com"
 __status__ = "Production"
-
 
 import csv
 import pandas as pd
@@ -36,8 +35,8 @@ def Main():
     sg.SetOptions(element_padding=(0,0))
 
     #adds the options to the bar at top
-    menu_def = [['File', ['Open', 'Save', 'Exit']],
-                ['Generate', ['Graph', ['line', 'bar',], 'Undo'],],
+    menu_def = [['File', ['Open', 'Exit']],
+                ['Generate', ['Graph', ['line', 'bar',], 'Reset'],],
                 ['Help', 'About...'],]
 
     columm_layout = [[]]
@@ -53,13 +52,15 @@ def Main():
 
     #sets the preview pane to see the preview portion
     Preview = [ [sg.Menu(menu_def)],
-               [sg.Column(columm_layout, size=(300,100), scrollable=True)]]
+               [sg.Column(columm_layout, size=(410,100), scrollable=True)]]
     #sets the layout for the graph settings on the box
     Setting = [[sg.Slider(range=(1,1000), default_value=500, size=(10,10), orientation='horizontal', key = 'height',font=('Helvetica', 12)),
-                    sg.Text('    Name: ', size=(10,1)), sg.InputText(key='graphtitle', size=(15,1))],
+                    sg.Text('    Name: ', size=(10,1)), sg.InputText(key='graphtitle', size=(15,1)), sg.Text('   Title of x-axis ', size = (14,1)),
+                    sg.InputText(key='xlabel', size=(15,1))],
                [sg.Text('Enter graph Height')],
                [sg.Slider(range=(1,1000), default_value=500, size=(10,10), orientation='horizontal', key = 'width', font=('Helvetica', 12)),
-                    sg.Text('       '),sg.Text(' Legend Location  '), sg.InputCombo(['Top Left','Top Right','Bottom Left', 'Bottom Right'], key = 'legendloc')],
+                    sg.Text('       '),sg.Text(' Legend Location  '), sg.InputCombo(['Top Left','Top Right','Bottom Left', 'Bottom Right'], key = 'legendloc'),
+                    sg.Text('  Title of y-axis ', size=(13,1)), sg.InputText(key='ylabel',size=(15,1))],
                [sg.Text('Enter graph Width')],
                [sg.Text(' ')],
                [sg.Text('Select the X axis'), sg.Text('                              Select the y axis(s)')],
@@ -176,6 +177,8 @@ def Main():
             name = values['graphtitle']
             plotwidthfloat= values['width']
             plotheightfloat= values['height']
+            xaxisname = values['xlabel']
+            yaxisname = values['ylabel']
 
             #changes the type floats to type Ints
             plotwidth=int(plotwidthfloat)
@@ -190,10 +193,13 @@ def Main():
 
             #array of colors to choose from
             #TODO add more colors
-            colorar = ['green','blue','red','orange',]
+            colorar = ['green','blue','red','orange','aqua','black', 'pink', 'cyan']
 
             #headers.Update(header_list)
             p = figure(title = name, plot_width=plotwidth, plot_height=plotheight)
+
+            p.xaxis.axis_label = xaxisname
+            p.yaxis.axis_label = yaxisname
             i=0
             #TODO remove this is uneccessay 
             #   you only need one x
@@ -215,6 +221,9 @@ def Main():
                 p.line(xx,var, legend=yhead[i],line_color=ccolor)
                 #testing...
                 print(yhead[i])
+
+
+
             
             output_file(name+'.html')
             lloc = values['legendloc']
@@ -233,7 +242,8 @@ def Main():
                 p.legend.location ="bottom_left" 
             #show the graph
             show(p)
-
+        elif event == "Reset":
+                Main()
         # if a valid table location entered, change that location's value
         try:
             location = (int(values['inputrow']), int(values['inputcol']))
