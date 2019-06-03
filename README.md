@@ -40,6 +40,8 @@ import bokeh
 
 To ensure that all modules are loaded and everything is working. Launch the program and attempt to load a CVS into the program, If the data from the CVS is displayed then Graph Generator is working
 
+Check the screenshots for examples of what the program is supposed to look like
+
 ## Deployment
 
 The best way to deploy this software for use in lab is to run locally either through command prompt or a Python Interpreter of your own
