@@ -1,3 +1,5 @@
+![size badge](https://img.shields.io/github/repo-size/Jobenland/CSV-Graph-Generator.svg) ![license](https://img.shields.io/github/license/Jobenland/CSV-Graph-Generator.svg) ![build](https://img.shields.io/badge/Build-Passing-green.svg) ![issues](https://img.shields.io/github/issues/Jobenland/CSV-Graph-Generator.svg) ![Version](https://img.shields.io/badge/Version-1.3.0-blue.svg) ![python](https://img.shields.io/badge/Python-3.x-lightgrey.svg) ![toplang](https://img.shields.io/github/languages/top/Jobenland/CSV-Graph-Generator.svg) ![quality](https://img.shields.io/badge/Code%20Quality-Testing...-red.svg)
+
 # CSV Data Grapher
 
 This program generates graphs from a given CSV file and allows the user to generate a User friendly graph
@@ -39,6 +41,8 @@ import bokeh
 ## Running the tests
 
 To ensure that all modules are loaded and everything is working. Launch the program and attempt to load a CVS into the program, If the data from the CVS is displayed then Graph Generator is working
+
+Check the screenshots for examples of what the program is supposed to look like
 
 ## Deployment
 
