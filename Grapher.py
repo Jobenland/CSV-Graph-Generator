@@ -9,7 +9,7 @@ __author__ = "Jonathan Obenland"
 __copyright__ = "Copyright 2019, MEII"
 __credits__ = ["Jonathan Obenland", "Mikethewatchguy"]
 __license__ = "GPL"
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 __maintainer__ = "Jonathan Obenland"
 __email__ = "jobenland1@gmail.com"
 __status__ = "Production"
@@ -201,17 +201,18 @@ def Main():
             p.xaxis.axis_label = xaxisname
             p.yaxis.axis_label = yaxisname
             i=0
-            #TODO remove this is uneccessay 
-            #   you only need one x
+             
+            #unecessary but still leave here for now
             for i in range(len(xhead)):
                 xx=weight[xhead[i]]
 
             #goes through each of the headers selected and uses them in the program
             for i in range(len(yhead)):
                 
-                #TODO optimize
+                #sets the color to the array at the index. leave for now
                 ccolor = colorar[i]
                 print(ccolor)
+                
                 #increments yy with a number at the end for adding more lines
                 var = 'yy'+str(i)
                 var = weight[yhead[i]]
@@ -222,10 +223,10 @@ def Main():
                 #testing...
                 print(yhead[i])
 
-
-
-            
+            #output for the html file
             output_file(name+'.html')
+
+            #grabbing the data from the legend area spot
             lloc = values['legendloc']
             
             #user selected location of legend
@@ -244,8 +245,8 @@ def Main():
             show(p)
 
         #if the user wants to reset the program
-        #FIXME this does not work. It opens another window and the program crashes
         elif event == "Reset":
+                window.Close()
                 Main()
         # if a valid table location entered, change that location's value
         try:
