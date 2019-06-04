@@ -9,7 +9,7 @@ __author__ = "Jonathan Obenland"
 __copyright__ = "Copyright 2019, MEII"
 __credits__ = ["Jonathan Obenland", "Mikethewatchguy"]
 __license__ = "GPL"
-__version__ = "1.4.0"
+__version__ = "1.4.7"
 __maintainer__ = "Jonathan Obenland"
 __email__ = "jobenland1@gmail.com"
 __status__ = "Production"
@@ -19,6 +19,7 @@ import pandas as pd
 import pandas
 import sys
 import np
+import webbrowser
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import ColumnDataSource
 if sys.version_info[0] >= 3:
@@ -37,7 +38,7 @@ def Main():
     #adds the options to the bar at top
     menu_def = [['File', ['Open', 'Exit']],
                 ['Generate', ['Graph', ['line', 'bar',], 'Reset'],],
-                ['Help', 'About...'],]
+                ['Help', ['About...','Submit An Issue']]]
 
     columm_layout = [[]]
 
@@ -69,7 +70,9 @@ def Main():
     #general layout bringing all the smaller frames together
     layout = [[sg.Text('use open to load the csv')], 
               [sg.Frame('Preview', Preview, title_color='green', font = 'Any 12'), sg.Image('UMD.png')],
-              [sg.Frame('Graph Settings', Setting, title_color='blue', font = 'Any 12')]]
+              [sg.Frame('Graph Settings', Setting, title_color='blue', font = 'Any 12')],
+              [sg.Text('Property of Maryland Energy Innovation Institute                                           written by Jonathan Obenland', text_color = 'red')],
+              [sg.Text('All rights reserved under GNU-GPL version 3                                                Python 3.x   Build: PASSING', text_color = 'green')]]
 
     #names the table and creates the layout
     window = sg.Window('Table', return_keyboard_events=True).Layout(layout).Finalize()
@@ -248,6 +251,11 @@ def Main():
         elif event == "Reset":
                 window.Close()
                 Main()
+
+        elif event == 'Submit An Issue':
+            a_website = "https://github.com/Jobenland/CSV-Graph-Generator/issues"
+            webbrowser.open_new(a_website)
+
         # if a valid table location entered, change that location's value
         try:
             location = (int(values['inputrow']), int(values['inputcol']))
