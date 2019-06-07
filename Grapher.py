@@ -55,11 +55,11 @@ def Main():
     Preview = [ [sg.Menu(menu_def)],
                [sg.Column(columm_layout, size=(410,100), scrollable=True)]]
     #sets the layout for the graph settings on the box
-    Setting = [[sg.Slider(range=(1,1000), default_value=500, size=(10,10), orientation='horizontal', key = 'height',font=('Helvetica', 12)),
+    Setting = [[sg.Slider(range=(1,650), default_value=650, size=(10,10), orientation='horizontal', key = 'height',font=('Helvetica', 12)),
                     sg.Text('    Name: ', size=(10,1)), sg.InputText(key='graphtitle', size=(15,1)), sg.Text('   Title of x-axis ', size = (14,1)),
                     sg.InputText(key='xlabel', size=(15,1))],
                [sg.Text('Enter graph Height')],
-               [sg.Slider(range=(1,1000), default_value=500, size=(10,10), orientation='horizontal', key = 'width', font=('Helvetica', 12)),
+               [sg.Slider(range=(1,1500), default_value=1500, size=(10,10), orientation='horizontal', key = 'width', font=('Helvetica', 12)),
                     sg.Text('       '),sg.Text(' Legend Location  '), sg.InputCombo(['Top Left','Top Right','Bottom Left', 'Bottom Right'], key = 'legendloc'),
                     sg.Text('  Title of y-axis ', size=(13,1)), sg.InputText(key='ylabel',size=(15,1))],
                [sg.Text('Enter graph Width')],
@@ -72,7 +72,7 @@ def Main():
               [sg.Frame('Preview', Preview, title_color='green', font = 'Any 12'), sg.Image('UMD.png')],
               [sg.Frame('Graph Settings', Setting, title_color='blue', font = 'Any 12')],
               [sg.Text('Property of Maryland Energy Innovation Institute                                           written by Jonathan Obenland', text_color = 'red')],
-              [sg.Text('All rights reserved under GNU-GPL version 3                                                Python 3.x   Build: PASSING', text_color = 'green')]]
+              [sg.Text('All rights reserved under GNU-GPL version 3                                                Python 3.x   Build: ', text_color = 'blue'),sg.Text("PASSING",text_color = 'green')]]
 
     #names the table and creates the layout
     window = sg.Window('Table', return_keyboard_events=True).Layout(layout).Finalize()
