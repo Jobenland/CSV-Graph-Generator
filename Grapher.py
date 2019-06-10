@@ -53,7 +53,7 @@ def Main():
 
     #sets the preview pane to see the preview portion
     Preview = [ [sg.Menu(menu_def)],
-               [sg.Column(columm_layout, size=(410,100), scrollable=True)]]
+               [sg.Column(columm_layout, size=(410,100), scrollable=True),sg.Table(values=data, )]]
     #sets the layout for the graph settings on the box
     Setting = [[sg.Slider(range=(1,650), default_value=650, size=(10,10), orientation='horizontal', key = 'height',font=('Helvetica', 12)),
                     sg.Text('    Name: ', size=(10,1)), sg.InputText(key='graphtitle', size=(15,1)), sg.Text('   Title of x-axis ', size = (14,1)),
@@ -96,6 +96,12 @@ def Main():
 
             #opens up a window to choose a file with the extension .csv
             filename = sg.PopupGetFile('filename to open', no_window=True, file_types=(("CSV Files","*.csv"),))
+
+            if filename is not None:
+                df = pd.read_csv(filename, sep=',',engine='python', header=None)
+                data = df.values.tolist()
+
+            
 
             #populates the first box for choosing the x axis
             if filename is not None:
