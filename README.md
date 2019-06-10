@@ -23,8 +23,8 @@ A step by step series of examples that tell you how to get a development env run
 
 
 ```
-pip install tkinter
-pip install pandas
+pip install tkinter (not right name) coming soon
+pip install pandas 
 pip install PySimpleGUI
 pip install bokeh
 ```
