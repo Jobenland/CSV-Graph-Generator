@@ -27,6 +27,7 @@ pip install tkinter (not right name) coming soon
 pip install pandas 
 pip install PySimpleGUI
 pip install bokeh
+pip install np
 ```
 
 (optional) not needed
@@ -53,6 +54,7 @@ The best way to deploy this software for use in lab is to run locally either thr
 * [PySimpleGUI](https://pypi.org/project/PySimpleGUI/) - Used to create a GUI more efficiently
 * [TKinter](https://docs.python.org/3/library/tkinter.html) - Used as backend GUI framework and support
 * [Bokeh](https://bokeh.pydata.org/en/latest/) - Used as plotting software for the plot function
+* [NP](http://cs231n.github.io/python-numpy-tutorial/) - Help with scientific calculations
 
 ## Contributing
 
