@@ -53,19 +53,19 @@ def Main():
 
     #sets the preview pane to see the preview portion
     Preview = [ [sg.Menu(menu_def)],
-               [sg.Column(columm_layout, size=(410,100), scrollable=True),sg.Table(values=data, )]]
+               [sg.Column(columm_layout, size=(410,100), scrollable=True)]]
     #sets the layout for the graph settings on the box
-    Setting = [[sg.Slider(range=(1,650), default_value=650, size=(10,10), orientation='horizontal', key = 'height',font=('Helvetica', 12)),
+    Setting = [[sg.Slider(range=(1,1500), default_value=610, size=(10,10), orientation='horizontal', key = 'height',font=('Helvetica', 12)),
                     sg.Text('    Name: ', size=(10,1)), sg.InputText(key='graphtitle', size=(15,1)), sg.Text('   Title of x-axis ', size = (14,1)),
                     sg.InputText(key='xlabel', size=(15,1))],
                [sg.Text('Enter graph Height')],
-               [sg.Slider(range=(1,1500), default_value=1500, size=(10,10), orientation='horizontal', key = 'width', font=('Helvetica', 12)),
+               [sg.Slider(range=(1,1500), default_value=650, size=(10,10), orientation='horizontal', key = 'width', font=('Helvetica', 12)),
                     sg.Text('       '),sg.Text(' Legend Location  '), sg.InputCombo(['Top Left','Top Right','Bottom Left', 'Bottom Right'], key = 'legendloc'),
                     sg.Text('  Title of y-axis ', size=(13,1)), sg.InputText(key='ylabel',size=(15,1))],
                [sg.Text('Enter graph Width')],
                [sg.Text(' ')],
                [sg.Text('Select the X axis'), sg.Text('                              Select the y axis(s)')],
-               [sg.Listbox(['Load CSV to See available headers'], key = 'xheaders', size=(30,6)),sg.Listbox(['Load CSV to See available headers'],select_mode='multiple',key = 'yheaders', size=(30,6))]]
+               [sg.Listbox(['Load CSV to See available headers'], key = 'xheaders', size=(30,6)),sg.Listbox(['Load CSV to See available headers'],select_mode='multiple',key = 'yheaders', size=(30,6)), sg.Checkbox('Maintain ASR',default = False,key='ASR')]]
               
     #general layout bringing all the smaller frames together
     layout = [[sg.Text('use open to load the csv')], 
@@ -97,11 +97,7 @@ def Main():
             #opens up a window to choose a file with the extension .csv
             filename = sg.PopupGetFile('filename to open', no_window=True, file_types=(("CSV Files","*.csv"),))
 
-            if filename is not None:
-                df = pd.read_csv(filename, sep=',',engine='python', header=None)
-                data = df.values.tolist()
-
-            
+        
 
             #populates the first box for choosing the x axis
             if filename is not None:
@@ -141,7 +137,7 @@ def Main():
                         #let the user know they tried to load a bad file
                         sg.PopupError('Error reading file')
                         continue
-
+                '''
                 # clear the table
                 [window.FindElement((i,j)).Update('') for j in range(MAX_COL) for i in range(MAX_ROWS)]
 
@@ -164,6 +160,7 @@ def Main():
                         #no work no do
                         except:
                             pass
+                '''
         #TODO fix the save function to allow a user to change a field and save it as a csv
         #FIXME saves in an unreadable corrupt CSV
         elif event == 'Save':
@@ -205,7 +202,10 @@ def Main():
             colorar = ['green','blue','red','orange','aqua','black', 'pink', 'cyan']
 
             #headers.Update(header_list)
-            p = figure(title = name, plot_width=plotwidth, plot_height=plotheight)
+            if values['ASR'] == True:
+                p = figure(title = name, plot_width=plotwidth, plot_height=plotheight, match_aspect=True)
+            if values['ASR'] == False:
+                p = figure(title = name, plot_width=plotwidth, plot_height=plotheight)
 
             p.xaxis.axis_label = xaxisname
             p.yaxis.axis_label = yaxisname
@@ -227,6 +227,8 @@ def Main():
                 var = weight[yhead[i]]
                 print(var)
                 #creates the lines
+                
+
                 p.circle(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor)
                 p.line(xx,var, legend=yhead[i],line_color=ccolor)
                 #testing...
