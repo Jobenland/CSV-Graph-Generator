@@ -54,7 +54,8 @@ def Main():
 
     #sets the preview pane to see the preview portion
     Preview = [ [sg.Menu(menu_def)],
-                [sg.Text('To preview imported data, click the button below    ')],
+                [sg.Text('To preview imported data, select '),sg.Text("Generate -> Preview", text_color = 'blue')], 
+                [sg.Text('Make sure the text is green below before proceeding')],
                 [sg.Text('                                                    ')],
                 [sg.Text('No CSV has been entered', size = (51,1),text_color = 'red',key = 'fn')],
                 [sg.Text('                                                        ')]]
@@ -72,12 +73,12 @@ def Main():
                [sg.Text('Enter graph Width')],
                [sg.Text(' ')],
                [sg.Text('Select the X axis'), sg.Text('                              Select the y axis(s)')],
-               [sg.Listbox(['Load CSV to See available headers'], key = 'xheaders', size=(30,6)),sg.Listbox(['Load CSV to See available headers'],select_mode='multiple',key = 'yheaders', size=(30,6)), sg.Checkbox('Maintain ASR',default = False,key='ASR')]]
+               [sg.Listbox(['Load CSV to See available headers'], key = 'xheaders', size=(30,6)),sg.Listbox(['Load CSV to See available headers'],select_mode='multiple',key = 'yheaders', size=(30,6)), sg.Checkbox('Maintain Aspect',default = False,key='ASR')]]
               
     #general layout bringing all the smaller frames together
     layout = [[sg.Text('First, Use Open to load a CSV into the program and verify the correct path in the preview box.')],
               [sg.Text('Note to keep the box a perfect square, leave the height and width at 610 by 650')], 
-              [sg.Frame('Preview', Preview, title_color='green', font = 'Any 12'), sg.Image('UMD.png')],
+              [sg.Frame('Preview', Preview, title_color='green', font = 'Any 12'), sg.Image('Img/UMD.png')],
               [sg.Frame('Graph Settings', Setting, title_color='blue', font = 'Any 12')],
               [sg.Text('Property of Maryland Energy Innovation Institute                                           written by Jonathan Obenland', text_color = 'red')],
               [sg.Text('All rights reserved under GNU-GPL version 3                                                Python 3.x   Build: ', text_color = 'blue'),sg.Text("PASSING",text_color = 'green')]]
@@ -215,7 +216,7 @@ def Main():
                                         vertical_scroll_only = False,
                                         num_rows = min(len(data),20))]]
 
-                window2 = sg.Window('Window2').Layout(layout2)
+                window2 = sg.Window(filename + '   PREVIEW').Layout(layout2)
             if window2_active:
                 event2, values2 = window2.Read(timeout=100)
                 if event2 is None or event2 == 'Exit':
