@@ -74,5 +74,6 @@ This project is licensed under the GPL License
 
 ## ScreenShots
 
-![working](Working.png)
+![working](Img/Working.png)
+![Example](Examples/Example.gif)
 
