@@ -72,8 +72,7 @@ No versioning control has been set up yet but I am working on having this work i
 
 This project is licensed under the GPL License
 
-## ScreenShots
+## Working Example
 
-![working](Img/Working.png)
 ![Example](Examples/Example.gif)
 
