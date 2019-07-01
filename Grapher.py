@@ -72,6 +72,8 @@ def Main():
                     sg.Text('  Title of y-axis ', size=(13,1)), sg.InputText(key='ylabel',size=(15,1))],
                [sg.Text('Enter graph Width')],
                [sg.Text(' ')],
+               [sg.Checkbox('Multi x-Axis support (requires special csv -- see notes)',default = False,key='multiA')],
+               [sg.Text(' ')],
                [sg.Text('Select the X axis'), sg.Text('                              Select the y axis(s)')],
                [sg.Listbox(['Load CSV to See available headers'], key = 'xheaders', size=(30,6)),sg.Listbox(['Load CSV to See available headers'],select_mode='multiple',key = 'yheaders', size=(30,6)), sg.Checkbox('Maintain Aspect',default = False,key='ASR')]]
               
@@ -246,40 +248,90 @@ def Main():
 
             #array of colors to choose from
             #TODO add more colors
-            colorar = ['green','blue','red','orange','aqua','black', 'pink', 'cyan']
+            colorar = ['green','blue','red','orange','aqua','black', 'pink', 'cyan', 'purple', 'magenta']
 
             #headers.Update(header_list)
             if values1['ASR'] == True:
                 p = figure(title = name, plot_width=plotwidth, plot_height=plotheight, match_aspect=True)
             if values1['ASR'] == False:
-                p = figure(title = name, plot_width=plotwidth, plot_height=plotheight,tools='')
+                p = figure(title = name, plot_width=plotwidth, plot_height=plotheight)
 
             p.xaxis.axis_label = xaxisname
             p.yaxis.axis_label = yaxisname
             i=0
-             
+            
+            if values1['multiA'] == True:
+                
+                '''
+                for i in range(len(xhead)):
+                    xxGet=weight[xhead[i]]
+                    print(xxGet)
+                    xxIndex = xxGet[i]
+                    print(xxIndex)
+                    splitTest = xxIndex.split(',')
+                    print (splitTest)
+                    xx = splitTest[0]
+                    yy = splitTest[1]
+                    print (xx)
+                '''
+                #goes through each of the headers selected and uses them in the program
+                for i in range(len(yhead)):
+                    #headerupdate2 = window1.FindElement('xheaders')
+                    #headerupdate2.Update('Multi Axis enabled, Select Y only')
+                    #sets the color to the array at the index. leave for now
+                    ccolor = colorar[i]
+                    print(ccolor)
+                    xx=[]
+                    yy=[]
+                    #increments yy with a number at the end for adding more lines
+                    varYY = 'yy'+str(i)
+                    varYY = weight[yhead[i]]
+                    yList = varYY.tolist()
+                    
+                    for line in yList:
+                        splitter = line.strip('(')
+                        
+                        splitter = splitter.strip(')')
+                        splitter = splitter.split(',')
+                        splitterIntX = (float(splitter[0]))
+                        splitterIntY = (float(splitter[1]))
+                        xx.append(splitterIntX)
+                        yy.append(splitterIntY)
+
+
+                    
+                    #creates the lines
+                    
+
+                    p.circle(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor)
+                    p.line(xx,yy, legend=yhead[i],line_color=ccolor)
+                    #testing...
+                    print(yhead[i])
+
+
+            if values1['multiA'] == False:
             #unecessary but still leave here for now
-            for i in range(len(xhead)):
-                xx=weight[xhead[i]]
+                for i in range(len(xhead)):
+                    xx=weight[xhead[i]]
+                
+                #goes through each of the headers selected and uses them in the program
+                for i in range(len(yhead)):
+                    
+                    #sets the color to the array at the index. leave for now
+                    ccolor = colorar[i]
+                    print(ccolor)
+                    
+                    #increments yy with a number at the end for adding more lines
+                    var = 'yy'+str(i)
+                    var = weight[yhead[i]]
+                    print(var)
+                    #creates the lines
+                    
 
-            #goes through each of the headers selected and uses them in the program
-            for i in range(len(yhead)):
-                
-                #sets the color to the array at the index. leave for now
-                ccolor = colorar[i]
-                print(ccolor)
-                
-                #increments yy with a number at the end for adding more lines
-                var = 'yy'+str(i)
-                var = weight[yhead[i]]
-                print(var)
-                #creates the lines
-                
-
-                p.circle(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor)
-                p.line(xx,var, legend=yhead[i],line_color=ccolor)
-                #testing...
-                print(yhead[i])
+                    p.circle(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor)
+                    p.line(xx,var, legend=yhead[i],line_color=ccolor)
+                    #testing...
+                    print(yhead[i])
 
             #output for the html file
             output_file(name+'.html')
