@@ -72,7 +72,7 @@ def Main():
                     sg.Text('  Title of y-axis ', size=(13,1)), sg.InputText(key='ylabel',size=(15,1))],
                [sg.Text('Enter graph Width')],
                [sg.Text(' ')],
-               [sg.Checkbox('Multi x-Axis support (requires special csv -- see notes)',default = False,key='multiA')],
+               [sg.Checkbox('Graph Multiple Data Sets ',default = False,key='multiA')],
                [sg.Text(' ')],
                [sg.Text('Select the X axis'), sg.Text('                              Select the y axis(s)')],
                [sg.Listbox(['Load CSV to See available headers'], key = 'xheaders', size=(30,6)),sg.Listbox(['Load CSV to See available headers'],select_mode='multiple',key = 'yheaders', size=(30,6)), sg.Checkbox('Maintain Aspect',default = False,key='ASR')]]
