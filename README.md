@@ -43,7 +43,7 @@ import bokeh
 
 To ensure that all modules are loaded and everything is working. Launch the program and attempt to load a CVS into the program, If the data from the CVS is displayed then Graph Generator is working
 
-Check the screenshots for examples of what the program is supposed to look like
+Check the screenshots for examples of what the program is supposed to look like 
 
 ## Deployment
 
