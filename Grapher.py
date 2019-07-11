@@ -324,8 +324,8 @@ def Main():
                         p.line(xx,yy, legend=yhead[i],line_color=ccolor)
                         p.diamond(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
 
-                    p.circle(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor)
-                    p.line(xx,yy, legend=yhead[i],line_color=ccolor)
+                    #p.circle(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor)
+                    #p.line(xx,yy, legend=yhead[i],line_color=ccolor)
                     #testing...
                     print(yhead[i])
 
