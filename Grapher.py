@@ -302,7 +302,27 @@ def Main():
 
                     
                     #creates the lines
-                    
+                    dotMrk = values1['dot']
+                    sizeOfMrk = values1['size']
+                    markSize = int(sizeOfMrk)
+                     
+                    if dotMrk == 'Dot':
+                        p.line(xx,yy, legend=yhead[i],line_color=ccolor)
+                        p.circle(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
+                    if dotMrk == 'No Marker':
+                        p.line(xx,yy, legend=yhead[i],line_color=ccolor)
+                    if dotMrk == 'Square':
+                        p.line(xx,yy, legend=yhead[i],line_color=ccolor)
+                        p.square(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
+                    if dotMrk == 'Triangle':
+                        p.line(xx,yy, legend=yhead[i],line_color=ccolor)
+                        p.triangle(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
+                    if dotMrk == 'Inverted Triangle':
+                        p.line(xx,yy, legend=yhead[i],line_color=ccolor)
+                        p.inverted_triangle(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
+                    if dotMrk == 'Diamond':
+                        p.line(xx,yy, legend=yhead[i],line_color=ccolor)
+                        p.diamond(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
 
                     p.circle(xx,yy, legend=yhead[i],fill_color=ccolor,line_color=ccolor)
                     p.line(xx,yy, legend=yhead[i],line_color=ccolor)
