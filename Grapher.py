@@ -54,10 +54,10 @@ def Main():
 
     #sets the preview pane to see the preview portion
     Preview = [ [sg.Menu(menu_def)],
-                [sg.Text('To preview imported data, select '),sg.Text("Generate -> Preview", text_color = 'blue')], 
+                [sg.Text('To preview imported data, select '),sg.Text("Generate -> Preview ", text_color = 'blue'),sg.Text("Check the file path below           ")], 
                 [sg.Text('Make sure the text is green below before proceeding')],
-                [sg.Text('                                                    ')],
-                [sg.Text('No CSV has been entered', size = (51,1),text_color = 'red',key = 'fn')],
+                [sg.Text('                                                                                            ')],
+                [sg.Text('No CSV has been entered', size = (67,1),text_color = 'red',key = 'fn')],
                 [sg.Text('                                                        ')]]
                #[sg.Column(columm_layout, size=(410,100), scrollable=True)],
                #[sg.Table(values=data,max_col_width=1,headings=header_lisst,
@@ -72,22 +72,25 @@ def Main():
                     sg.Text('  Title of y-axis ', size=(13,1)), sg.InputText(key='ylabel',size=(15,1))],
                [sg.Text('Enter graph Width')],
                [sg.Text(' ')],
-               [sg.Checkbox('Graph Multiple Data Sets ',default = False,key='multiA'),sg.Combo(['Dot','No Marker', 'Square', 'Triangle', 'Inverted Triangle','Diamond'], key= 'dot'),
+               [sg.Checkbox('Graph Multiple Data Sets       Data Mark Type',default = False,key='multiA'),sg.Combo(['Dot','No Marker', 'Square', 'Triangle', 'Inverted Triangle','Diamond'], key= 'dot'),
                     sg.Text('    '),sg.Text('Size of Mark      '),sg.Slider(range=(1,50), default_value=5, size=(10,10), orientation='horizontal', key = 'size', font=('Helvetica', 12))],
+                [sg.Text(' ')],
+               [sg.Text('Choose Axis Visibility   '),sg.InputCombo(['Both Axis Visibile','Only X Axis','Only Y Axis', 'Both Axis Invisible'], key = 'axis')],
                [sg.Text(' ')],
+
                [sg.Text('Select the X axis'), sg.Text('                              Select the y axis(s)')],
-               [sg.Listbox(['Load CSV to See available headers'], key = 'xheaders', size=(30,6)),sg.Listbox(['Load CSV to See available headers'],select_mode='multiple',key = 'yheaders', size=(30,6)), sg.Checkbox('Maintain Aspect',default = False,key='ASR')]]
+               [sg.Listbox(['Load CSV to See available headers'], key = 'xheaders', size=(40,6)),sg.Listbox(['Load CSV to See available headers'],select_mode='multiple',key = 'yheaders', size=(40,6)), sg.Checkbox('Maintain Aspect',default = False,key='ASR')]]
               
     #general layout bringing all the smaller frames together
     layout = [[sg.Text('First, Use Open to load a CSV into the program and verify the correct path in the preview box.')],
               [sg.Text('Note to keep the box a perfect square, leave the height and width at 610 by 650')], 
               [sg.Frame('Preview', Preview, title_color='green', font = 'Any 12'), sg.Image('Img/UMD.png')],
               [sg.Frame('Graph Settings', Setting, title_color='blue', font = 'Any 12')],
-              [sg.Text('Property of Maryland Energy Innovation Institute                                           written by Jonathan Obenland', text_color = 'red')],
-              [sg.Text('All rights reserved under GNU-GPL version 3                                                Python 3.x   Build: ', text_color = 'blue'),sg.Text("PASSING",text_color = 'green')]]
-
+              [sg.Text('Property of Maryland Energy Innovation Institute                                                                        written by Jonathan Obenland', text_color = 'red')],
+              [sg.Text('All rights reserved under GNU-GPL version 3                                                                             Python 3.x   Build: ', text_color = 'blue'),sg.Text("PASSING",text_color = 'green')]]
+ 
     #names the table and creates the layout
-    window1 = sg.Window('Table', return_keyboard_events=True).Layout(layout).Finalize()
+    window1 = sg.Window('Table',icon = 'Img/graph.ico', return_keyboard_events=True).Layout(layout).Finalize()
 
     #starts the event listener for the window
     window2_active = False
@@ -242,6 +245,7 @@ def Main():
 
             #read the csv of the given filename
             weight = pd.read_csv(filename)
+
 
             #gets the values of the headers
             xhead = values1['xheaders']
@@ -414,7 +418,18 @@ def Main():
                 # display a tooltip whenever the cursor is vertically in line with a glyph
                 mode='vline'
             ))   
-            '''        
+            ''' 
+            axvi = values1['axis']       
+            if axvi == 'Both Axis Visibile':
+                p.yaxis.visible = True
+                p.xaxis.visible = True
+            if axvi == 'Only X Axis':
+                p.yaxis.visible = False
+            if axvi == 'Only Y Axis':
+                p.xaxis.visible = False
+            if axvi == 'Both Axis Invisible':
+                p.yaxis.visible = False
+                p.xaxis.visible = False
 
             show(p)
 
