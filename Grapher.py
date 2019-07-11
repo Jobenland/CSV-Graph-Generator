@@ -72,7 +72,8 @@ def Main():
                     sg.Text('  Title of y-axis ', size=(13,1)), sg.InputText(key='ylabel',size=(15,1))],
                [sg.Text('Enter graph Width')],
                [sg.Text(' ')],
-               [sg.Checkbox('Graph Multiple Data Sets ',default = False,key='multiA')],
+               [sg.Checkbox('Graph Multiple Data Sets ',default = False,key='multiA'),sg.Combo(['Dot','No Marker', 'Square', 'Triangle', 'Inverted Triangle','Diamond'], key= 'dot'),
+                    sg.Text('    '),sg.Text('Size of Mark      '),sg.Slider(range=(1,50), default_value=5, size=(10,10), orientation='horizontal', key = 'size', font=('Helvetica', 12))],
                [sg.Text(' ')],
                [sg.Text('Select the X axis'), sg.Text('                              Select the y axis(s)')],
                [sg.Listbox(['Load CSV to See available headers'], key = 'xheaders', size=(30,6)),sg.Listbox(['Load CSV to See available headers'],select_mode='multiple',key = 'yheaders', size=(30,6)), sg.Checkbox('Maintain Aspect',default = False,key='ASR')]]
@@ -326,10 +327,30 @@ def Main():
                     var = weight[yhead[i]]
                     print(var)
                     #creates the lines
+                    dotMrk = values1['dot']
+                    sizeOfMrk = values1['size']
+                    markSize = int(sizeOfMrk)
+                     
+                    if dotMrk == 'Dot':
+                        p.line(xx,var, legend=yhead[i],line_color=ccolor)
+                        p.circle(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
+                    if dotMrk == 'No Marker':
+                        p.line(xx,var, legend=yhead[i],line_color=ccolor)
+                    if dotMrk == 'Square':
+                        p.line(xx,var, legend=yhead[i],line_color=ccolor)
+                        p.square(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
+                    if dotMrk == 'Triangle':
+                        p.line(xx,var, legend=yhead[i],line_color=ccolor)
+                        p.triangle(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
+                    if dotMrk == 'Inverted Triangle':
+                        p.line(xx,var, legend=yhead[i],line_color=ccolor)
+                        p.inverted_triangle(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
+                    if dotMrk == 'Diamond':
+                        p.line(xx,var, legend=yhead[i],line_color=ccolor)
+                        p.diamond(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
+                    
                     
 
-                    p.circle(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor)
-                    p.line(xx,var, legend=yhead[i],line_color=ccolor)
                     #testing...
                     print(yhead[i])
 
@@ -351,6 +372,10 @@ def Main():
 
             elif lloc == 'Bottom Left':
                 p.legend.location ="bottom_left" 
+
+
+
+
             #show the graph
             '''
             p.add_tools(HoverTool(
