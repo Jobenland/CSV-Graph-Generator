@@ -295,16 +295,13 @@ def Main():
                     
                     for line in yList:
                         splitter = line.strip('(')
-                        
                         splitter = splitter.strip(')')
                         splitter = splitter.split(',')
                         splitterIntX = (float(splitter[0]))
                         splitterIntY = (float(splitter[1]))
                         xx.append(splitterIntX)
                         yy.append(splitterIntY)
-
-
-                    
+                   
                     #creates the lines
                     dotMrk = values1['dot']
                     sizeOfMrk = values1['size']
@@ -372,8 +369,6 @@ def Main():
                     if dotMrk == 'Diamond':
                         p.line(xx,var, legend=yhead[i],line_color=ccolor)
                         p.diamond(xx,var, legend=yhead[i],fill_color=ccolor,line_color=ccolor,size= markSize)
-                    
-                    
 
                     #testing...
                     print(yhead[i])
@@ -397,28 +392,6 @@ def Main():
             elif lloc == 'Bottom Left':
                 p.legend.location ="bottom_left" 
 
-
-
-
-            #show the graph
-            '''
-            p.add_tools(HoverTool(
-                tooltips=[
-                    ( 'date',   '@date{%F}'            ),
-                    ( 'close',  '$@{adj close}{%0.2f}' ), # use @{ } for field names with spaces
-                    ( 'volume', '@volume{0.00 a}'      ),
-                ],
-
-                formatters={
-                    'date'      : 'datetime', # use 'datetime' formatter for 'date' field
-                    'adj close' : 'printf',   # use 'printf' formatter for 'adj close' field
-                                            # use default 'numeral' formatter for other fields
-                },
-
-                # display a tooltip whenever the cursor is vertically in line with a glyph
-                mode='vline'
-            ))   
-            ''' 
             axvi = values1['axis']       
             if axvi == 'Both Axis Visibile':
                 p.yaxis.visible = True
