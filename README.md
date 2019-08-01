@@ -2,6 +2,8 @@
 
 # CSV Data Grapher
 
+Video Example: https://youtu.be/WzZWRhIGH_Y
+
 This program generates graphs from a given CSV file and allows the user to generate a User friendly graph
 
 
@@ -40,6 +42,8 @@ import bokeh
 ```
 
 ## Running the tests
+
+Video Example: https://youtu.be/WzZWRhIGH_Y
 
 To ensure that all modules are loaded and everything is working. Launch the program and attempt to load a CVS into the program, If the data from the CVS is displayed then Graph Generator is working
 
